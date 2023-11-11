@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<SplitPane dividerPositions="0.362876254180602" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mndoceria.FXMLMnLoginController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="261.0" style="-fx-background-color: #FCE0EC;">
+         <children>
+            <TextField fx:id="txtUsuario" layoutX="33.0" layoutY="162.0" promptText="Usuario" style="-fx-background-radius: 20;" />
+            <Button layoutX="69.0" layoutY="255.0" mnemonicParsing="false" onAction="#ButtonLogin" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: b0445c;" text="➜" textFill="#fce0ec">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
+            <PasswordField fx:id="txtSenha" layoutX="33.0" layoutY="211.0" promptText="Senha" style="-fx-background-radius: 20;" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="354.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imgs/mnbg.png" />
+               </image></ImageView>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

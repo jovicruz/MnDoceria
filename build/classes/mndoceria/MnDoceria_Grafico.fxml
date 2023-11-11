@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mndoceria.FXMLMnGraficoController">
+   <children>
+      <BarChart fx:id="Grafico" layoutX="10.0" layoutY="10.0" prefHeight="360.0" prefWidth="453.0">
+         <xAxis>
+            <CategoryAxis fx:id="gMeses" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="gVendas" side="LEFT" />
+         </yAxis>
+      </BarChart>
+      <Button fx:id="btnVoltar" layoutX="495.0" layoutY="200.0" mnemonicParsing="false" onAction="#Voltar" text="Voltar" />
+   </children>
+</AnchorPane>

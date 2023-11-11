@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b0445c;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mndoceria.FXMLMnVendasEditController">
+   <children>
+      <GridPane fx:id="gpProdutos" layoutX="14.0" layoutY="33.0" prefHeight="295.0" prefWidth="360.0" style="-fx-background-color: #ffe4ec; -fx-background-radius: 20;" vgap="10.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="126.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="54.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="1.0" prefHeight="1.0" />
+        </rowConstraints>
+         <effect>
+            <DropShadow color="#00000053" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </GridPane>
+      <GridPane layoutX="403.0" layoutY="33.0" prefHeight="258.0" prefWidth="170.0" style="-fx-background-color: #ffe4ec; -fx-background-radius: 20;">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="183.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lblSubtotal" text="Subtotal: R$0,00 " textFill="#b0445c">
+               <font>
+                  <Font name="Calibri" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblEntrega" text="0,00" textFill="#b0445c">
+               <font>
+                  <Font name="Calibri" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="98.0" top="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblTotal" text="0,00" textFill="#b0445c" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri Bold" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="80.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="TOTAL: R$" textFill="#b0445c" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri Bold" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="65.0" />
+               </GridPane.margin>
+            </Label>
+            <ComboBox fx:id="cbBairros" onAction="#clickCbBairros" prefWidth="150.0" promptText="Bairro">
+               <GridPane.margin>
+                  <Insets bottom="40.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <Label minWidth="-Infinity" prefHeight="26.0" prefWidth="150.0" text="Entrega: R$" textFill="#b0445c">
+               <font>
+                  <Font name="Calibri" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#00000054" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </GridPane>
+      <Label fx:id="lblPedido" layoutX="29.0" layoutY="6.0" textFill="WHITE" />
+      <Button fx:id="btnSalvar" disable="true" layoutX="462.0" layoutY="324.0" mnemonicParsing="false" onAction="#Salvar" text="Salvar" />
+      <Button fx:id="btnAddProduto" layoutX="144.0" layoutY="349.0" mnemonicParsing="false" onAction="#AddProduto" text="Adicionar novo " />
+      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="349.0" mnemonicParsing="false" onAction="#Voltar" text="Voltar" />
+   </children>
+</AnchorPane>
