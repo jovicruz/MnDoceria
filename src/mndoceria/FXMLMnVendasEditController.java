@@ -80,6 +80,7 @@ public class FXMLMnVendasEditController implements Initializable{
 	Connection conn = null;		
 	int idproduto = 0;
 	int qntproduto = 0;
+	int idpedido = 0;
 	double taxabairro = 0;
 	double vlproduto = 0;
 	ObservableList<String> ProdutosList = FXCollections.observableArrayList();
@@ -96,6 +97,9 @@ public class FXMLMnVendasEditController implements Initializable{
 	private void clickCbBairros() {
 		UpdateEntrega(cbBairros.getValue());
 		lblEntrega.setText(String.valueOf(taxabairro));
+		if(lblPedido.getText() != "") {
+			btnSalvar.setDisable(false);
+		}
 	}
 	
 	private void UpdateEntrega(String nmbairro) {
@@ -148,6 +152,8 @@ public class FXMLMnVendasEditController implements Initializable{
 	}
 	
 	public void CarregarPedido(Integer idpedido) {
+		this.idpedido = idpedido;
+		lblPedido.setText("Pedido: " + Integer.toString(idpedido));
 		ArrayList<String> produtos = new ArrayList<>();
 		ArrayList<Integer> quantidade = new ArrayList<>();
 		SqlConnection conn = new SqlConnection();
@@ -158,6 +164,9 @@ public class FXMLMnVendasEditController implements Initializable{
 			cbBairros.setValue(conn.GetNmBairro(idpedido));
 			
 			for (Integer i = 0; i < produtos.size();i++) {
+				System.out.println(produtos.get(i));
+				System.out.println(quantidade.get(i));
+				
 				ComboBox<String> cbProdutos = new ComboBox<String>(ProdutosList);
 				ComboBox<Integer> cbQnt = new ComboBox<Integer>();
 				
@@ -175,10 +184,12 @@ public class FXMLMnVendasEditController implements Initializable{
 				cbProdutos.setOnAction(e -> {
 					UpdateValores(cbProdutos, cbQnt, lblTotalP);
 					AtualizarSubtotal();
+					btnSalvar.setDisable(false);
 				});
 				cbQnt.setOnAction(e -> {
 					UpdateValores(cbProdutos, cbQnt, lblTotalP);
 					AtualizarSubtotal();
+					btnSalvar.setDisable(false);
 				});
 			}
 			clickCbBairros();
@@ -226,11 +237,20 @@ public class FXMLMnVendasEditController implements Initializable{
 
 			for (Integer i = 0; i < produtos.size(); i++) {
 				idprodutos.add(conn.getIdProduto(produtos.get(i)));
+				System.out.println(produtos.get(i));
+				System.out.println(quantidades.get(i));
 	        }
 			
+			if(lblPedido.getText() != "") {
+				conn.AtualizarPedido(idbairro, LocalDateTime.now().toLocalDate(), Double.parseDouble(lblTotal.getText()), idprodutos, quantidades, idpedido);
+				JOptionPane.showMessageDialog(null, "Pedido Atualizado com Sucesso!");
+			}
 			
-			conn.SalvarPedido(idbairro, LocalDateTime.now().toLocalDate(), Double.parseDouble(lblTotal.getText()), idprodutos, quantidades);
-			JOptionPane.showMessageDialog(null, "Pedido Salvo com Sucesso!");
+			else {
+				conn.SalvarPedido(idbairro, LocalDateTime.now().toLocalDate(), Double.parseDouble(lblTotal.getText()), idprodutos, quantidades);
+				JOptionPane.showMessageDialog(null, "Pedido Salvo com Sucesso!");	
+			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

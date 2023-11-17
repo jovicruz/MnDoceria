@@ -213,13 +213,55 @@ public void SalvarDetalhes(Integer idpedido, Integer idproduto, Integer quantida
 	}
 	       }
 
+public void AtualizarPedido(Integer idbairro, LocalDate data, Double valor, ArrayList<Integer> idprodutos, ArrayList<Integer> quantidades, Integer idpedido) throws SQLException{
+	conn = getConnected();
+	try {
+		String sql = "UPDATE PEDIDOS SET ID_BAIRRO = ?, DT_PEDIDO = ?, VL_PEDIDO = ?, DS_PEDIDO = ?, DS_ENDERECO = ? WHERE ID_PEDIDO = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, idbairro);
+		ps.setDate(2, Date.valueOf(data));
+		ps.setDouble(3, valor);
+		ps.setString(4, "TOME");
+		ps.setString(5, "Rua tal, nº1");
+		ps.setInt(6, idpedido);
+		
+		ps.executeUpdate();
+		
+		ps = conn.prepareStatement("DELETE FROM DetalhesVendas WHERE ID_PEDIDO = ?");
+		ps.setInt(1, idpedido);
+		ps.executeUpdate();
+		
+		rs = conn.createStatement().executeQuery("SELECT MAX(ID_PEDIDO) FROM PEDIDOS");
+		rs.next();
+		
+		
+		for (Integer i = 0; i < idprodutos.size(); i++) {
+			SalvarDetalhes(idpedido, idprodutos.get(i), quantidades.get(i));
+        }
+		
+		
+		
+		
+	} catch (SQLException e) {
+		System.out.print(e);
+	}
+	finally {
+		if (conn != null){
+            conn.close();
+		}
+	}
+	       }
+
+
+
 public ArrayList<String> GetDetalhesProdutos(Integer idpedido) throws SQLException{
 	conn = getConnected();
 	ArrayList<String> produtos = new ArrayList<>();
 	try {
 		
 		
-		String sql = "SELECT NM_PRODUTO FROM DetalhesVendas JOIN PRODUTOS on detalhesvendas.ID_PRODUTO = PRODUTOS.ID_PRODUTO WHERE ID_PEDIDO = ?";
+		String sql = "SELECT NM_PRODUTO, ID_DETALHE FROM DetalhesVendas JOIN PRODUTOS on detalhesvendas.ID_PRODUTO = PRODUTOS.ID_PRODUTO WHERE ID_PEDIDO = ? ORDER BY ID_DETALHE asc";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
 		ps.setInt(1, idpedido);	
